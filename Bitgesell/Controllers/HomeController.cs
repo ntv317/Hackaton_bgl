@@ -41,6 +41,8 @@ namespace Bitgesell.Controllers
         public IActionResult TrasactionHistory(string purse)
         {
             var res = BitgesellApi.GetLastTx(null);
+            ViewBag.Purse = purse;
+            ViewBag.Balance = BitgesellApi.GetBalance(purse);
             res.TransactionResult= res.TransactionResult.Where(x => x.Address == purse).ToList();
             return View(res);
         }

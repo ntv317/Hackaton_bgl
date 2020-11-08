@@ -20,16 +20,29 @@
             <input type="text" class="form-control" id="amount" placeholder="Enter amount">
         </div>
         <button type="button" class="form-control btn btn-success" onclick="getparas();">send Me!</button>
-        <div>
-            @Html.ActionLink("bgl1qqpcqx0fat577k7zxjwjdmucupwq7gdvrcf0sfh", "TrasactionHistory", "home", new { purse = "bgl1qqpcqx0fat577k7zxjwjdmucupwq7gdvrcf0sfh" });
-        </div>
-        <div>
-            @Html.ActionLink("bgl1qqtdftz4c6e6mq4vt3y8jyf6eu2yvekkmmwr9ya", "TrasactionHistory", "home", new { purse = "bgl1qqtdftz4c6e6mq4vt3y8jyf6eu2yvekkmmwr9ya" });
-        </div>
-        <div>
-            @Html.ActionLink("bgl1qqd5cek4ykasu6xkwu4tu68vg7wqcxw9c4mmdaq", "TrasactionHistory", "home", new { purse = "bgl1qqd5cek4ykasu6xkwu4tu68vg7wqcxw9c4mmdaq" });
-        </div>
+       
+       
 
+    </div>
+    <div class="row">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text"> @Html.ActionLink("bgl1qqpcqx0fat577k7zxjwjdmucupwq7gdvrcf0sfh", "TrasactionHistory", "home", new { purse = "bgl1qqpcqx0fat577k7zxjwjdmucupwq7gdvrcf0sfh" });</p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text"> @Html.ActionLink("bgl1qqtdftz4c6e6mq4vt3y8jyf6eu2yvekkmmwr9ya", "TrasactionHistory", "home", new { purse = "bgl1qqtdftz4c6e6mq4vt3y8jyf6eu2yvekkmmwr9ya" });</p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text"> @Html.ActionLink("bgl1qqd5cek4ykasu6xkwu4tu68vg7wqcxw9c4mmdaq", "TrasactionHistory", "home", new { purse = "bgl1qqd5cek4ykasu6xkwu4tu68vg7wqcxw9c4mmdaq" });</p>
+            </div>
+        </div>
     </div>
 @section Scripts
 {

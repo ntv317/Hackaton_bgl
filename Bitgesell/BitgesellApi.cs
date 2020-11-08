@@ -15,24 +15,24 @@ namespace Bitgesell
         public static bool SendTransaction (List<string> rawTx)
         {
 
-            var client = new RestClient("http://bgl_user:12345678@161.35.123.34:8332/wallet/");
-            client.Timeout = -1;
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
             string json= "{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", " +
                 "\"method\": \"sendrawtransaction\",\"params\":[\"" +
                 $"{rawTx[0]}" +
                 "\"] }";
-
-            using (var webClient = new WebClient())
-            {
-                webClient.Credentials = new NetworkCredential("bgl_user", "12345678");
-
-                var response = webClient.UploadString($"http://161.35.123.34:8332/wallet/", "POST", json);
-                
-            }
-            //var res = ExecuteRequest<SendTransaction>(rawTx, MetodType.sendrawtransaction);
+            ExecuteRequest<object>(null, MetodType.sendrawtransaction, json);
             return true;
+        }
+
+        public static double GetBalance(string purse)
+        {
+            string json = "{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", \"method\":\"listunspent\",\"params\":[1, 9999999] }";
+            var res = ExecuteRequest<GetBalance>(null, MetodType.sendrawtransaction, json);
+            if (res?.Result.Count() > 0)
+            {
+                var balance = res.Result.Where(x => x.Address == purse).Sum(x => x.Amount);
+                return balance;
+            }
+            return 0;
         }
 
         public  static TransactionList GetLastTx(List<string> purse)
@@ -65,14 +65,23 @@ namespace Bitgesell
         {
             try
             {
-                
+                string json = "";
+                if (parSt == null)
+                {
                     var parameterRequest = new Request
                     {
                         Parameters = par,
                         Method = type.ToString()
 
                     };
-                    var json = JsonConvert.SerializeObject(parameterRequest);
+                    json = JsonConvert.SerializeObject(parameterRequest);
+
+                }
+                else
+                {
+                    json = parSt;
+                }
+                   
                 
                 using (var webClient = new WebClient())
                 {

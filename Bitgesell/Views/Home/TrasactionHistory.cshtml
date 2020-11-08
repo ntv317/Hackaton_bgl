@@ -34,7 +34,10 @@
 </style>
 @model TransactionList;
 
+
 <div class="row">
+
+    <p>@ViewBag.Purse balance:@ViewBag.Balance</p>
     @foreach (var el in Model.TransactionResult)
     {
         
