@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "d+PMVDViNHqwKx6skAXB1BuLpXARoBX570T6B4kh8JcBrWv2dBoi/zoMpMSgaNmv13pEQwfGRhx7IojxDXnBFQ==",
+  "success": true,
+  "projectFilePath": "/Users/thevan/Projects/Bitgesell/Bitgesell/Bitgesell.csproj",
+  "expectedPackageFiles": [
+    "/Users/thevan/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
+    "/Users/thevan/.nuget/packages/restsharp/106.11.7/restsharp.106.11.7.nupkg.sha512"
+  ],
+  "logs": []
+}
