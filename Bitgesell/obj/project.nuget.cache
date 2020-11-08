@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "d+PMVDViNHqwKx6skAXB1BuLpXARoBX570T6B4kh8JcBrWv2dBoi/zoMpMSgaNmv13pEQwfGRhx7IojxDXnBFQ==",
+  "dgSpecHash": "osGT4X6lF8Nirx78Anms5Eh9+Iq6y8C2RMWGPuSIEz96vWsJGnorcTi7thHWhgNq1mVY5opxVSHlxdFFnjxHqQ==",
   "success": true,
-  "projectFilePath": "/Users/thevan/Projects/Bitgesell/Bitgesell/Bitgesell.csproj",
+  "projectFilePath": "/Users/thevan/Documents/GitHub/Hackaton_bgl/Bitgesell/Bitgesell.csproj",
   "expectedPackageFiles": [
     "/Users/thevan/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
     "/Users/thevan/.nuget/packages/restsharp/106.11.7/restsharp.106.11.7.nupkg.sha512"

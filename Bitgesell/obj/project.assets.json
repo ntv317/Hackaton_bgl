@@ -83,11 +83,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/thevan/Projects/Bitgesell/Bitgesell/Bitgesell.csproj",
+      "projectUniqueName": "/Users/thevan/Documents/GitHub/Hackaton_bgl/Bitgesell/Bitgesell.csproj",
       "projectName": "Bitgesell",
-      "projectPath": "/Users/thevan/Projects/Bitgesell/Bitgesell/Bitgesell.csproj",
+      "projectPath": "/Users/thevan/Documents/GitHub/Hackaton_bgl/Bitgesell/Bitgesell.csproj",
       "packagesPath": "/Users/thevan/.nuget/packages/",
-      "outputPath": "/Users/thevan/Projects/Bitgesell/Bitgesell/obj/",
+      "outputPath": "/Users/thevan/Documents/GitHub/Hackaton_bgl/Bitgesell/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/thevan/.config/NuGet/NuGet.Config"

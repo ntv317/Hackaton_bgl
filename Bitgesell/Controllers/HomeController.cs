@@ -22,19 +22,19 @@ namespace Bitgesell.Controllers
         {
             return View();
         }
-        public JsonResult GetPars( GetParamsRequest req)
+        public JsonResult GetPars(string purse)
         {
             var count = BitgesellApi.GetBlockCount();
             var pars = new List<string>();
-            pars.Add(req.Purse);
-            var lastTrans = BitgesellApi.GetLastTx(pars)?.TransactionResult?.OrderByDescending(x=>x.Blocktime).FirstOrDefault()?.Txid;
+            pars.Add(purse);
+            var lastTrans = BitgesellApi.LastTx(pars);
             return Json(new { count=count, lastTrans = lastTrans});
         }
 
-        public JsonResult SendTx(GetParamsRequest req)
+        public JsonResult SendTx(string rawTx)
         {
             var pars = new List<string>();
-            pars.Add(req.RawTx);
+            pars.Add(rawTx);
             return Json(new { isSuccess = BitgesellApi.SendTransaction(pars)});
         }
 

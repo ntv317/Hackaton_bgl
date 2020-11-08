@@ -26,6 +26,9 @@
         <div>
             @Html.ActionLink("bgl1qqtdftz4c6e6mq4vt3y8jyf6eu2yvekkmmwr9ya", "TrasactionHistory", "home", new { purse = "bgl1qqtdftz4c6e6mq4vt3y8jyf6eu2yvekkmmwr9ya" });
         </div>
+        <div>
+            @Html.ActionLink("bgl1qqd5cek4ykasu6xkwu4tu68vg7wqcxw9c4mmdaq", "TrasactionHistory", "home", new { purse = "bgl1qqd5cek4ykasu6xkwu4tu68vg7wqcxw9c4mmdaq" });
+        </div>
 
     </div>
 @section Scripts
@@ -54,7 +57,7 @@
                 RawTx: rawTx
             };
             debugger;
-            $.post("@Url.Action("SendTx", "Home")", { pars }, function (res) {
+            $.post("@Url.Action("SendTx", "Home")", { rawTx }, function (res) {
                 if (res == true) {
                     alert("success")
                 } else {
@@ -70,7 +73,7 @@
                 Purse: purse,
                 RawTx: ""
             };
-            $.post("@Url.Action("GetPars", "Home")", { pars },
+            $.post("@Url.Action("GetPars", "Home")", { purse },
                 function (res) {
                     signRawTxTest2(res.count, res.lastTrans);
               })

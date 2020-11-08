@@ -14,8 +14,25 @@ namespace Bitgesell
 
         public static bool SendTransaction (List<string> rawTx)
         {
-            var res = ExecuteRequest<SendTransaction>(rawTx, MetodType.sendrawtransaction);
-            return res.Error == null;
+
+            var client = new RestClient("http://bgl_user:12345678@161.35.123.34:8332/wallet/");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            string json= "{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", " +
+                "\"method\": \"sendrawtransaction\",\"params\":[\"" +
+                $"{rawTx[0]}" +
+                "\"] }";
+
+            using (var webClient = new WebClient())
+            {
+                webClient.Credentials = new NetworkCredential("bgl_user", "12345678");
+
+                var response = webClient.UploadString($"http://161.35.123.34:8332/wallet/", "POST", json);
+                
+            }
+            //var res = ExecuteRequest<SendTransaction>(rawTx, MetodType.sendrawtransaction);
+            return true;
         }
 
         public  static TransactionList GetLastTx(List<string> purse)
@@ -24,6 +41,15 @@ namespace Bitgesell
             if (res.TransactionResult.Count > 0)
             {
                 return res;
+            }
+            return null;
+        }
+        public static string LastTx(List<string> purse)
+        {
+            var res = ExecuteRequest<TransactionList>(purse, MetodType.listtransactions);
+            if (res.TransactionResult.Count > 0)
+            {
+                return res.TransactionResult.OrderByDescending(x=>x.Blocktime).FirstOrDefault().Txid;
             }
             return null;
         }
