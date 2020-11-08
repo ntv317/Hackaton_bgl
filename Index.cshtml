@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="text-center">
+        <div class="form-group">
+            <label for="sender">Sender</label>
+            <input type="text" class="form-control" id="sender" placeholder="Enter sender address">
+        </div>
+        <div class="form-group">
+            <label for="reciver">Receiver</label>
+            <input type="text" class="form-control" id="reciver" placeholder="Enter receiver address">
+        </div>
+        <div class="form-group">
+            <label for="privatekey">private key</label>
+            <input type="text" class="form-control" id="privatekey" placeholder="Enter key">
+        </div>
+        <div class="form-group">
+            <label for="amount">amount</label>
+            <input type="text" class="form-control" id="amount" placeholder="Enter amount">
+        </div>
+        <button type="button" class="form-control btn btn-success" onclick="getparas();">send Me!</button>
+        <div>
+            @Html.ActionLink("bgl1qqpcqx0fat577k7zxjwjdmucupwq7gdvrcf0sfh", "TrasactionHistory", "home", new { purse = "bgl1qqpcqx0fat577k7zxjwjdmucupwq7gdvrcf0sfh" });
+        </div>
+        <div>
+            @Html.ActionLink("bgl1qqtdftz4c6e6mq4vt3y8jyf6eu2yvekkmmwr9ya", "TrasactionHistory", "home", new { purse = "bgl1qqtdftz4c6e6mq4vt3y8jyf6eu2yvekkmmwr9ya" });
+        </div>
+
+    </div>
+@section Scripts
+{
+    <script type="text/javascript" src="/js/jsbgl.web.min.js"></script>
+    <script>
+        const signRawTxTest2 = async (ltime, txId) => {
+            const privateKey = $("#privatekey").val();
+            const addressTo = $("#reciver").val();
+            const vOut = 0;
+            var InAmount = $("#amount").val() * 100000000
+            var OutAmount = InAmount - 0.005 * 100000000;
+            debugger;
+            await window.jsbtc.asyncInit();
+            const { Transaction, Address, SIGHASH_ALL } = window.jsbtc;
+            let a = new Address(privateKey);
+            let addressFrom = a.address;
+            let tx = new Transaction({ lockTime: ltime, segwit: true });
+            tx.addInput({ txId, vOut, address: addressFrom });
+            tx.addOutput({ value: OutAmount, address: addressTo });
+            tx.signInput(0, { privateKey, sigHashType: SIGHASH_ALL, value: InAmount });
+
+            var rawTx = tx.serialize();
+            var pars = {
+                Purse: "",
+                RawTx: rawTx
+            };
+            debugger;
+            $.post("@Url.Action("SendTx", "Home")", { pars }, function (res) {
+                if (res == true) {
+                    alert("success")
+                } else {
+                    alert("fail");
+                }
+            })
+            return rawTx;
+        };
+
+        function getparas() {
+            var purse = $("#sender").val();
+            var pars = {
+                Purse: purse,
+                RawTx: ""
+            };
+            $.post("@Url.Action("GetPars", "Home")", { pars },
+                function (res) {
+                    signRawTxTest2(res.count, res.lastTrans);
+              })
+        };
+
+    </script>
+}
